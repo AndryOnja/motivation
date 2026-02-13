@@ -145,12 +145,12 @@ export function useMotivation() {
   }
 
   function scheduleNotification(): void {
-    const [hours, minutes] = notificationTime.value.split(':')
+    const [hours = '0', minutes = '0'] = notificationTime.value.split(':')
     localStorage.setItem('notificationTime', notificationTime.value)
     
     const now = new Date()
     const scheduledTime = new Date()
-    scheduledTime.setHours(parseInt(hours), parseInt(minutes), 0, 0)
+    scheduledTime.setHours(parseInt(hours, 10), parseInt(minutes, 10), 0, 0)
     
     if (scheduledTime <= now) {
       scheduledTime.setDate(scheduledTime.getDate() + 1)
